@@ -1,0 +1,47 @@
+
+knight.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+knightleft1
+  rotate: false
+  xy: 1, 1
+  size: 86, 99
+  orig: 86, 99
+  offset: 0, 0
+  index: -1
+knightleft2
+  rotate: false
+  xy: 89, 1
+  size: 86, 99
+  orig: 86, 99
+  offset: 0, 0
+  index: -1
+knightleft3
+  rotate: false
+  xy: 177, 1
+  size: 86, 99
+  orig: 86, 99
+  offset: 0, 0
+  index: -1
+knightright1
+  rotate: false
+  xy: 265, 1
+  size: 86, 99
+  orig: 86, 99
+  offset: 0, 0
+  index: -1
+knightright2
+  rotate: false
+  xy: 353, 1
+  size: 86, 99
+  orig: 86, 99
+  offset: 0, 0
+  index: -1
+knightright3
+  rotate: false
+  xy: 441, 1
+  size: 86, 99
+  orig: 86, 99
+  offset: 0, 0
+  index: -1
