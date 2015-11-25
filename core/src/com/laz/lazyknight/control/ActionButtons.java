@@ -3,11 +3,14 @@ package com.laz.lazyknight.control;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.laz.lazyknight.player.Fireball;
 
 public class ActionButtons {
 
@@ -24,7 +27,7 @@ public class ActionButtons {
         skActions = new Skin();
         skActions.addRegions(taActions);
 
-        sActions = new String[] {"attack", "magic", "jump"};
+        sActions = new String[]{"attack", "magic", "jump"};
         drwActions = new Drawable[3];
         ibsActions = new ImageButtonStyle[3];
         ibtnActions = new ImageButton[3];
@@ -46,5 +49,28 @@ public class ActionButtons {
         for (int i = 0; i < 3; i++) {
             stage.addActor(ibtnActions[i]);
         }
+    }
+
+    public void check(final Fireball fireball) {
+        ibtnActions[0].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("ATTACK");
+            }
+        });
+
+        ibtnActions[1].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                fireball.makeFireball();
+            }
+        });
+
+        ibtnActions[2].addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("JUMP");
+            }
+        });
     }
 }

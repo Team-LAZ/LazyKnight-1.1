@@ -56,16 +56,12 @@ public class DPad {
     }
 
     public void update(Knight knight) {
-        if (ibtnDpad[3].isPressed()) {
-            knight.bLeft = true;
-        } else {
-            knight.bLeft = false;
-        }
-
-        if (ibtnDpad[1].isPressed()) {
-            knight.bRight = true;
-        } else {
-            knight.bRight = false;
+        if (ibtnDpad[1].isPressed()) { //if right is pressed
+            knight.setDirection(1);
+        } else if (ibtnDpad[3].isPressed()) { //if left is pressed
+            knight.setDirection(3);
+        } else { //if nothing is pressed
+            knight.setDirection(4);
         }
     }
 }

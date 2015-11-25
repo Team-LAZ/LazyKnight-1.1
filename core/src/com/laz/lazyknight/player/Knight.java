@@ -12,9 +12,9 @@ public class Knight {
     TextureAtlas taKnight;
     Image imgKnight;
     TextureRegion trCurrentFrame, trLeft[], trRight[];
-    Animation aniLeft, aniRight;
-    public float fStateTime, x, y;
-    public boolean bLeft, bRight, bStop;
+    Animation aniKnight[];
+    float fStateTime, fX, fY;
+    int nDir, nState;
 
     public Knight() {
         taKnight = new TextureAtlas("knight.atlas");
@@ -29,40 +29,44 @@ public class Knight {
             trRight[i] = taKnight.findRegion("knightright" + (i + 1));
         }
 
-        aniLeft = new Animation(0.15f, trLeft);
-        aniRight = new Animation(0.15f, trRight);
+        trCurrentFrame = trRight[0]; //set the starting position as right
+
+        aniKnight = new Animation[2];
+        aniKnight[0] = new Animation(0.15f, trRight);
+        aniKnight[1] = new Animation(0.15f, trLeft);
 
         fStateTime = 0f;
-        y = Gdx.graphics.getHeight() / 2;
-        bRight = true;
+        fX = 0f;
+        fY = Gdx.graphics.getHeight() / 2;
+        nDir = 4; //character starts at rest
     }
 
     public void update(Stage stage) {
         fStateTime += Gdx.graphics.getDeltaTime();
-
-        x = imgKnight.getX();
-
         imgKnight.remove();
 
-        if (bRight) {
-            if (bStop) {
-                trCurrentFrame = trRight[0];
-            } else {
-                trCurrentFrame = aniRight.getKeyFrame(fStateTime, true);
+        if (nDir == 1) { //if right is pressed on dpad
+            trCurrentFrame = aniKnight[0].getKeyFrame(fStateTime, true);
+            nState = 1; //saves last direction
+            fX += 5;
+        } else if (nDir == 3) { //if left is pressed on dpad
+            trCurrentFrame = aniKnight[1].getKeyFrame(fStateTime, true);
+            nState = 3; //saves last direction
+            fX -= 5;
+        } else if (nDir == 4) { //if character isn't moving
+            if (nState == 1) {
+                trCurrentFrame = trRight[0]; //if last direction was right
+            } else if (nState == 3) {
+                trCurrentFrame = trLeft[0]; //if last direction was left
             }
-            x += 5;
-        } else if (bLeft) {
-            if (bStop) {
-                trCurrentFrame = trLeft[0];
-            } else {
-                trCurrentFrame = aniLeft.getKeyFrame(fStateTime, true);
-            }
-            x -= 5;
         }
 
         imgKnight = new Image(trCurrentFrame);
-        imgKnight.setPosition(x, y);
-
+        imgKnight.setPosition(fX, fY);
         stage.addActor(imgKnight);
+    }
+
+    public void setDirection(int nDir) {
+        this.nDir = nDir;
     }
 }

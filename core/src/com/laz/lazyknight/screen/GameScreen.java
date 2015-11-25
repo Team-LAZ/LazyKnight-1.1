@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.laz.lazyknight.control.ActionButtons;
 import com.laz.lazyknight.control.DPad;
+import com.laz.lazyknight.player.Fireball;
 import com.laz.lazyknight.player.Knight;
 
 public class GameScreen extends Stage implements Screen {
@@ -16,6 +17,7 @@ public class GameScreen extends Stage implements Screen {
     DPad dpad;
     Knight knight;
     ActionButtons buttons;
+    Fireball fireball;
 
     OrthographicCamera camera;
 
@@ -24,11 +26,13 @@ public class GameScreen extends Stage implements Screen {
         dpad = new DPad();
         knight = new Knight();
         buttons = new ActionButtons();
+        fireball = new Fireball();
 
         camera = new OrthographicCamera();
 
         dpad.init(this);
         buttons.init(this);
+        buttons.check(fireball);
     }
 
     @Override
