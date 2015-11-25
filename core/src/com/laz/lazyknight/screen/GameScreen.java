@@ -30,9 +30,16 @@ public class GameScreen extends Stage implements Screen {
 
         camera = new OrthographicCamera();
 
-        dpad.init(this);
-        buttons.init(this);
-        buttons.check(fireball, knight);
+        knight.setStage(this);
+
+        dpad.setStage(this);
+        dpad.setKnight(knight);
+        dpad.init();
+
+        buttons.setStage(this);
+        buttons.setKnight(knight);
+        buttons.setFireball(fireball);
+        buttons.init();
     }
 
     @Override
@@ -46,8 +53,9 @@ public class GameScreen extends Stage implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
-        knight.update(this);
-        dpad.update(knight);
+
+        knight.update();
+        dpad.update();
 
         this.act(Gdx.graphics.getDeltaTime());
         this.draw();

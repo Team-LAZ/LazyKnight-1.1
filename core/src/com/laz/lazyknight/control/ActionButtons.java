@@ -15,6 +15,10 @@ import com.laz.lazyknight.player.Knight;
 
 public class ActionButtons {
 
+    Stage stage;
+    Knight knight;
+    Fireball fireball;
+
     TextureAtlas taActions;
     Skin skActions;
     String sActions[];
@@ -44,15 +48,17 @@ public class ActionButtons {
         ibtnActions[0].setPosition(Gdx.graphics.getWidth() - 185, 25);
         ibtnActions[1].setPosition(Gdx.graphics.getWidth() - 100, 75);
         ibtnActions[2].setPosition(Gdx.graphics.getWidth() - 185, 115);
+
+        check();
     }
 
-    public void init(Stage stage) {
+    public void init() {
         for (int i = 0; i < 3; i++) {
             stage.addActor(ibtnActions[i]);
         }
     }
 
-    public void check(final Fireball fireball, final Knight knight) {
+    public void check() {
         ibtnActions[0].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -73,5 +79,17 @@ public class ActionButtons {
                 knight.jump();
             }
         });
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public void setKnight(Knight knight) {
+        this.knight = knight;
+    }
+
+    public void setFireball(Fireball fireball) {
+        this.fireball = fireball;
     }
 }

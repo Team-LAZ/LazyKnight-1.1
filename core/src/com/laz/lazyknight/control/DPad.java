@@ -12,6 +12,9 @@ import com.laz.lazyknight.player.Knight;
 
 public class DPad {
 
+    Stage stage;
+    Knight knight;
+
     TextureAtlas taDpad;
     Skin skDpad;
     Image imgOutline;
@@ -48,14 +51,14 @@ public class DPad {
         ibtnDpad[3].setPosition(0, 50);
     }
 
-    public void init(Stage stage) {
+    public void init() {
         stage.addActor(imgOutline);
         for (int i = 0; i < 4; i++) {
             stage.addActor(ibtnDpad[i]);
         }
     }
 
-    public void update(Knight knight) {
+    public void update() {
         if (ibtnDpad[1].isPressed()) { //if right is pressed
             knight.setDirection(1);
         } else if (ibtnDpad[3].isPressed()) { //if left is pressed
@@ -63,5 +66,13 @@ public class DPad {
         } else { //if nothing is pressed
             knight.setDirection(4);
         }
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public void setKnight(Knight knight) {
+        this.knight = knight;
     }
 }

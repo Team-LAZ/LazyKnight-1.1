@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class Knight {
 
+    Stage stage;
+
     TextureAtlas taKnight;
     Image imgKnight;
     TextureRegion trCurrentFrame, trLeft[], trRight[];
@@ -43,7 +45,7 @@ public class Knight {
         nDir = 4; //character starts at rest
     }
 
-    public void update(Stage stage) {
+    public void update() {
         fStateTime += Gdx.graphics.getDeltaTime();
         imgKnight.remove();
 
@@ -78,5 +80,9 @@ public class Knight {
 
     public void setDirection(int nDir) {
         this.nDir = nDir;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }
