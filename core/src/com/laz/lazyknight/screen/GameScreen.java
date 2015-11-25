@@ -32,7 +32,7 @@ public class GameScreen extends Stage implements Screen {
 
         dpad.init(this);
         buttons.init(this);
-        buttons.check(fireball);
+        buttons.check(fireball, knight);
     }
 
     @Override

@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
+//https://github.com/Mrgfhci/LazyKnight-1.1/blob/master/core/src/com/laz/lazyknight/player/Knight.java
+
 public class Knight {
 
     TextureAtlas taKnight;
@@ -64,6 +66,14 @@ public class Knight {
         imgKnight = new Image(trCurrentFrame);
         imgKnight.setPosition(fX, fY);
         stage.addActor(imgKnight);
+    }
+
+    public void attack() {
+        System.out.println("ATTACK");
+    }
+
+    public void jump() {
+        System.out.println("JUMP");
     }
 
     public void setDirection(int nDir) {

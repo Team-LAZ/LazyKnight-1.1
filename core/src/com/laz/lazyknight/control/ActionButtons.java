@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.laz.lazyknight.player.Fireball;
+import com.laz.lazyknight.player.Knight;
 
 public class ActionButtons {
 
@@ -51,11 +52,11 @@ public class ActionButtons {
         }
     }
 
-    public void check(final Fireball fireball) {
+    public void check(final Fireball fireball, final Knight knight) {
         ibtnActions[0].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("ATTACK");
+                knight.attack();
             }
         });
 
@@ -69,7 +70,7 @@ public class ActionButtons {
         ibtnActions[2].addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("JUMP");
+                knight.jump();
             }
         });
     }
