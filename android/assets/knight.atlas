@@ -3,42 +3,42 @@ knight.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-knightleft1
+left1
   rotate: false
   xy: 1, 1
   size: 86, 99
   orig: 86, 99
   offset: 0, 0
   index: -1
-knightleft2
+left2
   rotate: false
   xy: 89, 1
   size: 86, 99
   orig: 86, 99
   offset: 0, 0
   index: -1
-knightleft3
+left3
   rotate: false
   xy: 177, 1
   size: 86, 99
   orig: 86, 99
   offset: 0, 0
   index: -1
-knightright1
+right1
   rotate: false
   xy: 265, 1
   size: 86, 99
   orig: 86, 99
   offset: 0, 0
   index: -1
-knightright2
+right2
   rotate: false
   xy: 353, 1
   size: 86, 99
   orig: 86, 99
   offset: 0, 0
   index: -1
-knightright3
+right3
   rotate: false
   xy: 441, 1
   size: 86, 99

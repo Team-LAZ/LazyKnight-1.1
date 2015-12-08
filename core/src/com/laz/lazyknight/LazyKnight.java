@@ -5,17 +5,18 @@ import com.laz.lazyknight.screen.GameScreen;
 
 public class LazyKnight extends Game {
 
-    GameScreen gameScreen;
-
     @Override
     public void create() {
-        gameScreen = new GameScreen(this);
-
-        setScreen(gameScreen);
+        setScreen(new GameScreen());
     }
 
     @Override
     public void render() {
         super.render();
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
     }
 }

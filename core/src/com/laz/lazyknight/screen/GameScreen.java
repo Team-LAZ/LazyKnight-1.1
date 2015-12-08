@@ -1,64 +1,26 @@
 package com.laz.lazyknight.screen;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.laz.lazyknight.control.ActionButtons;
-import com.laz.lazyknight.control.DPad;
-import com.laz.lazyknight.player.Fireball;
-import com.laz.lazyknight.player.Knight;
+import com.laz.lazyknight.stage.GameStage;
 
-public class GameScreen extends Stage implements Screen {
+//https://github.com/wmora/martianrun/blob/master/core/src/com/gamestudio24/martianrun/screens/GameScreen.java
 
-    Game game;
-    DPad dpad;
-    Knight knight;
-    ActionButtons buttons;
-    Fireball fireball;
+public class GameScreen implements Screen {
 
-    OrthographicCamera camera;
+    private GameStage stage;
 
-    public GameScreen(Game game) {
-        this.game = game;
-        dpad = new DPad();
-        knight = new Knight();
-        buttons = new ActionButtons();
-        fireball = new Fireball();
-
-        camera = new OrthographicCamera();
-
-        knight.setStage(this);
-
-        dpad.setStage(this);
-        dpad.setKnight(knight);
-        dpad.init();
-
-        buttons.setStage(this);
-        buttons.setKnight(knight);
-        buttons.setFireball(fireball);
-        buttons.init();
-    }
-
-    @Override
-    public void show() {
-        Gdx.input.setInputProcessor(this);
+    public GameScreen() {
+        stage = new GameStage();
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        camera.update();
-
-        knight.update();
-        dpad.update();
-
-        this.act(Gdx.graphics.getDeltaTime());
-        this.draw();
+        stage.draw();
+        stage.act(delta);
     }
 
     @Override
@@ -77,7 +39,17 @@ public class GameScreen extends Stage implements Screen {
     }
 
     @Override
+    public void show() {
+
+    }
+
+    @Override
     public void hide() {
-        this.dispose();
+
+    }
+
+    @Override
+    public void dispose() {
+
     }
 }
