@@ -1,0 +1,54 @@
+
+buttons.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 1, 160
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+jump
+  rotate: false
+  xy: 1, 78
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+magic
+  rotate: false
+  xy: 83, 160
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
+down
+  rotate: false
+  xy: 1, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+left
+  rotate: false
+  xy: 83, 83
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+right
+  rotate: false
+  xy: 165, 165
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+up
+  rotate: false
+  xy: 78, 1
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
