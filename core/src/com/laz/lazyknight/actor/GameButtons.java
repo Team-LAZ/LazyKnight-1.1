@@ -1,25 +1,18 @@
 package com.laz.lazyknight.actor;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class GameButtons extends Button {
 
-    Rectangle recBounds;
-    String sID;
     TextureAtlas taGB;
     Skin skGB;
     ButtonStyle bsGB;
 
-    public GameButtons(Rectangle recBounds, String sID) {
-        this.recBounds = recBounds;
-        this.sID = sID;
-
-        setWidth(recBounds.width);
-        setHeight(recBounds.height);
-        setBounds(recBounds.x, recBounds.y, recBounds.width, recBounds.height);
+    public GameButtons(String sID, float x, float y) {
+        setName(sID); //set id of each button
+        setBounds(x, y, 75, 75); //x, y, width, height of buttons
 
         taGB = new TextureAtlas("buttons.atlas");
 
@@ -29,5 +22,13 @@ public class GameButtons extends Button {
         bsGB = new ButtonStyle();
         bsGB.up = skGB.getDrawable(sID);
         setStyle(bsGB);
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if (isPressed()) {
+            System.out.println(getName());
+        }
     }
 }

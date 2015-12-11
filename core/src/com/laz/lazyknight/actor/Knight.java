@@ -5,23 +5,19 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.laz.lazyknight.util.Constants;
 
 public class Knight extends Image {
 
-    Rectangle recBounds;
     TextureAtlas taKnight;
     TextureRegion trFrame, trLeft[], trRight[];
     Animation aniKnight[];
 
-    String sDirection;
+    String sAction;
     float fX, fY, fWidth, fHeight, fStateTime;
 
     public Knight() {
-        recBounds = new Rectangle();
-
         taKnight = new TextureAtlas("knight.atlas");
 
         trLeft = new TextureRegion[3];
@@ -41,8 +37,7 @@ public class Knight extends Image {
         fWidth = 90;
         fHeight = 90;
         fStateTime = 0f;
-
-        sDirection = "stop";
+        sAction = "stop";
     }
 
     @Override
@@ -55,17 +50,17 @@ public class Knight extends Image {
         super.draw(batch, parentAlpha);
         fStateTime += Gdx.graphics.getDeltaTime();
 
-        if (sDirection.equals("up")) {
+        if (sAction.equals("up")) {
 
-        } else if (sDirection.equals("down")) {
+        } else if (sAction.equals("down")) {
 
-        } else if (sDirection.equals("left")) {
+        } else if (sAction.equals("left")) {
             trFrame = aniKnight[0].getKeyFrame(fStateTime, true);
             fX -= 5;
-        } else if (sDirection.equals("right")) {
+        } else if (sAction.equals("right")) {
             trFrame = aniKnight[1].getKeyFrame(fStateTime, true);
             fX += 5;
-        } else if (sDirection.equals("stop")) {
+        } else if (sAction.equals("stop")) {
 
         }
         batch.draw(trFrame, fX, fY, fWidth, fHeight);
