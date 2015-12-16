@@ -12,6 +12,8 @@ public class DPad extends Button {
     Skin skDPad;
     ButtonStyle bsDPad;
 
+    Knight knight;
+
     public DPad(String sID, float fX, float fY) {
         setName(sID); //set id of each directional arrow
         setBounds(fX, fY, 75, 75); //x, y, width, height of directional arrows
@@ -31,8 +33,20 @@ public class DPad extends Button {
 
     @Override
     public void act(float fDelta) {
-        if (isPressed()) {
-            System.out.println(getName());
+        if (isPressed() && getName().equals("left")) {
+            knight.setDirection(0);
         }
+
+        if (isPressed() && getName().equals("right")) {
+            knight.setDirection(1);
+        }
+
+        if (!isPressed()) {
+            //knight.setDirection(-1);
+        }
+    }
+
+    public void setKnight(Knight knight) {
+        this.knight = knight;
     }
 }

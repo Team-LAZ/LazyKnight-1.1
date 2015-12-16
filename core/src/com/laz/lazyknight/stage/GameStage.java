@@ -44,13 +44,18 @@ public class GameStage extends Stage {
         addActor(knight);
     }
 
-    public void initDPad() {
+    private void initDPad() {
         dpad = new DPad[4];
 
         dpad[0] = new DPad("up", 55, 100);
         dpad[1] = new DPad("down", 55, 0);
         dpad[2] = new DPad("left", 0, 50);
         dpad[3] = new DPad("right", 105, 50);
+
+        dpad[0].setKnight(knight);
+        dpad[1].setKnight(knight);
+        dpad[2].setKnight(knight);
+        dpad[3].setKnight(knight);
 
         addActor(DPad.imgOutline);
         addActor(dpad[0]);
