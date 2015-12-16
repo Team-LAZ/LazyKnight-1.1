@@ -10,9 +10,9 @@ public class GameButtons extends Button {
     Skin skGB;
     ButtonStyle bsGB;
 
-    public GameButtons(String sID, float x, float y) {
+    public GameButtons(String sID, float fX, float fY) {
         setName(sID); //set id of each button
-        setBounds(x, y, 75, 75); //x, y, width, height of buttons
+        setBounds(fX, fY, 80, 80); //x, y, width, height of buttons
 
         taGB = new TextureAtlas("buttons.atlas");
 
@@ -22,13 +22,5 @@ public class GameButtons extends Button {
         bsGB = new ButtonStyle();
         bsGB.up = skGB.getDrawable(sID);
         setStyle(bsGB);
-    }
-
-    @Override
-    public void act(float delta) {
-        super.act(delta);
-        if (isPressed()) {
-            System.out.println(getName());
-        }
     }
 }

@@ -2,11 +2,10 @@ package com.laz.lazyknight.stage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
+import com.laz.lazyknight.actor.DPad;
 import com.laz.lazyknight.actor.GameButtons;
 import com.laz.lazyknight.actor.Knight;
 import com.laz.lazyknight.util.Constants;
@@ -19,15 +18,17 @@ public class GameStage extends Stage {
     private static final int VIEWPORT_HEIGHT = Constants.APP_HEIGHT;
 
     OrthographicCamera camera;
-
     Knight knight;
+    DPad dpad[];
+    GameButtons gameButtons[];
 
     public GameStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT, new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
 
         initCamera();
-        initButtons();
         initKnight();
+        initDPad();
+        initButtons();
 
         Gdx.input.setInputProcessor(this);
     }
@@ -38,22 +39,35 @@ public class GameStage extends Stage {
         camera.update();
     }
 
-    private void initButtons() {
-        String sID[] = {"up", "down", "left", "right", "jump", "attack", "magic"}; //button id's
-        float fX[] = {55, 55, 0, 105, VIEWPORT_WIDTH - 185, VIEWPORT_WIDTH - 185, VIEWPORT_WIDTH - 100}; //button x's
-        float fY[] = {100, 0, 50, 50, 115, 25, 75}; //button y's
-
-        for (int i = 0; i < 7; i++) {
-            addActor(new GameButtons(sID[i], fX[i], fY[i])); //creates all of the buttons (dpad and attack, magic, jump)
-        }
-
-        Image imgDPadOutline = new Image(new Texture("dpad_outline.png")); //outline around the dpad
-        imgDPadOutline.setPosition(15, 15);
-        addActor(imgDPadOutline);
+    private void initKnight() {
+        knight = new Knight(100, VIEWPORT_HEIGHT / 2, 90, 90);
+        addActor(knight);
     }
 
-    private void initKnight() {
-        knight = new Knight();
-        addActor(knight);
+    public void initDPad() {
+        dpad = new DPad[4];
+
+        dpad[0] = new DPad("up", 55, 100);
+        dpad[1] = new DPad("down", 55, 0);
+        dpad[2] = new DPad("left", 0, 50);
+        dpad[3] = new DPad("right", 105, 50);
+
+        addActor(DPad.imgOutline);
+        addActor(dpad[0]);
+        addActor(dpad[1]);
+        addActor(dpad[2]);
+        addActor(dpad[3]);
+    }
+
+    private void initButtons() {
+        gameButtons = new GameButtons[3];
+
+        gameButtons[0] = new GameButtons("attack", VIEWPORT_WIDTH - 185, 25);
+        gameButtons[1] = new GameButtons("magic", VIEWPORT_WIDTH - 100, 75);
+        gameButtons[2] = new GameButtons("jump", VIEWPORT_WIDTH - 185, 115);
+
+        addActor(gameButtons[0]);
+        addActor(gameButtons[1]);
+        addActor(gameButtons[2]);
     }
 }

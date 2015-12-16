@@ -6,48 +6,47 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.laz.lazyknight.util.Constants;
 
 public class Knight extends Image {
 
     TextureAtlas taKnight;
-    TextureRegion trFrame, trLeft[], trRight[];
+    TextureRegion trFrame, trKnight[];
     Animation aniKnight[];
-
     String sAction;
     float fX, fY, fWidth, fHeight, fStateTime;
 
-    public Knight() {
+    public Knight(float fX, float fY, float fWidth, float fHeight) {
+        this.fX = fX;
+        this.fY = fY;
+        this.fWidth = fWidth;
+        this.fHeight = fHeight;
+
         taKnight = new TextureAtlas("knight.atlas");
 
-        trLeft = new TextureRegion[3];
-        trRight = new TextureRegion[3];
+        trKnight = new TextureRegion[6];
         for (int i = 0; i < 3; i++) {
-            trLeft[i] = taKnight.findRegion("left" + (i + 1));
-            trRight[i] = taKnight.findRegion("right" + (i + 1));
+            trKnight[i] = taKnight.findRegion("left" + (i + 1));
+            trKnight[i] = taKnight.findRegion("right" + (i + 1));
         }
-        trFrame = new TextureRegion(trRight[0]);
+        trFrame = new TextureRegion(trKnight[1]);
 
         aniKnight = new Animation[2];
-        aniKnight[0] = new Animation(0.1f, trLeft);
-        aniKnight[1] = new Animation(0.1f, trRight);
+        aniKnight[0] = new Animation(0.1f, trKnight[0], trKnight[2], trKnight[4]);
+        aniKnight[1] = new Animation(0.1f, trKnight[1], trKnight[3], trKnight[5]);
 
-        fX = 100;
-        fY = Constants.APP_HEIGHT / 2;
-        fWidth = 90;
-        fHeight = 90;
-        fStateTime = 0f;
+        fStateTime = 0;
         sAction = "stop";
     }
 
     @Override
-    public void act(float delta) {
-        super.act(delta);
+    public void act(float fDelta) {
+        super.act(fDelta);
+        //System.out.println(sAction);
     }
 
     @Override
-    public void draw(Batch batch, float parentAlpha) {
-        super.draw(batch, parentAlpha);
+    public void draw(Batch batch, float fAlpha) {
+        super.draw(batch, fAlpha);
         fStateTime += Gdx.graphics.getDeltaTime();
 
         if (sAction.equals("up")) {
@@ -64,5 +63,9 @@ public class Knight extends Image {
 
         }
         batch.draw(trFrame, fX, fY, fWidth, fHeight);
+    }
+
+    public void setAction(String sAction) {
+        this.sAction = sAction;
     }
 }
