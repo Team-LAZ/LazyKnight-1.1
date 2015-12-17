@@ -1,4 +1,4 @@
-package com.laz.lazyknight.actor;
+package com.laz.lazyknight.control;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
