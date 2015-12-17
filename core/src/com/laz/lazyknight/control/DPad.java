@@ -38,12 +38,18 @@ public class DPad extends Button {
     public void act(float fDelta) {
         if (isPressed() && getName().equals("left")) {
             knight.setDirection(0);
-            camera.translate(-4, 0);
+            if (knight.nBoundsX > -75) {
+                camera.translate(-4, 0);
+                knight.nBoundsX -= 1;
+            }
         }
 
         if (isPressed() && getName().equals("right")) {
             knight.setDirection(1);
-            camera.translate(4, 0);
+            if (knight.nBoundsX < 300) {
+                camera.translate(4, 0);
+                knight.nBoundsX += 1;
+            }
         }
     }
 

@@ -13,6 +13,7 @@ public class Knight extends Image {
     Animation aniKnight[];
     float fX, fY, fWidth, fHeight, fStateTime;
     int nDir, nState;
+    public int nBoundsX;
 
     public Knight(float fX, float fY, float fWidth, float fHeight) {
         this.fX = fX;
@@ -37,6 +38,7 @@ public class Knight extends Image {
         fStateTime = 0;
         nDir = 1; //set default direction to right, TODO save / load from external file
         //nState = 1;
+        nBoundsX = 0;
     }
 
     @Override
