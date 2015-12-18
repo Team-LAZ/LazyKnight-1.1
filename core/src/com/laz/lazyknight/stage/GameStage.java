@@ -8,45 +8,41 @@ import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.laz.lazyknight.actor.Knight;
 import com.laz.lazyknight.control.DPad;
 import com.laz.lazyknight.control.GameButtons;
-import com.laz.lazyknight.map.MapTown;
+import com.laz.lazyknight.map.Map;
 import com.laz.lazyknight.util.Constants;
 
 //https://github.com/wmora/martianrun/blob/master/core/src/com/gamestudio24/martianrun/stages/GameStage.java
 
 public class GameStage extends Stage {
 
-    private static final int VIEWPORT_WIDTH = Constants.APP_WIDTH;
-    private static final int VIEWPORT_HEIGHT = Constants.APP_HEIGHT;
-
-    public OrthographicCamera camera;
-    private Knight knight;
+    OrthographicCamera camera;
+    Map map;
     DPad dpad[];
     GameButtons gameButtons[];
-    public MapTown mapTown;
+    Knight knight;
 
     public GameStage() {
-        super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT, new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
+        super(new ScalingViewport(Scaling.stretch, Constants.APP_WIDTH, Constants.APP_HEIGHT, new OrthographicCamera(Constants.APP_WIDTH, Constants.APP_HEIGHT)));
 
         initCamera();
-        initKnight();
+        initMap();
         initDPad();
         initButtons();
-        initMap();
+        initKnight();
 
         Gdx.input.setInputProcessor(this);
     }
 
-    private void initCamera() {
-        camera = new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+    public void initCamera() {
+        camera = new OrthographicCamera(Constants.APP_WIDTH, Constants.APP_HEIGHT);
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0f);
     }
 
-    private void initKnight() {
-        knight = new Knight(VIEWPORT_WIDTH / 2 - 90, VIEWPORT_HEIGHT / 2 - 150, 90, 90);
-        addActor(knight);
+    public void initMap() {
+        map = new Map();
     }
 
-    private void initDPad() {
+    public void initDPad() {
         dpad = new DPad[4];
 
         dpad[0] = new DPad("up", 55, 100);
@@ -56,32 +52,34 @@ public class GameStage extends Stage {
 
         addActor(DPad.imgOutline);
         for (int i = 0; i < 4; i++) {
-            dpad[i].setKnight(knight);
-            dpad[i].setCamera(camera);
             addActor(dpad[i]);
         }
     }
 
-    private void initButtons() {
+    public void initButtons() {
         gameButtons = new GameButtons[3];
 
-        gameButtons[0] = new GameButtons("attack", VIEWPORT_WIDTH - 185, 25);
-        gameButtons[1] = new GameButtons("magic", VIEWPORT_WIDTH - 100, 75);
-        gameButtons[2] = new GameButtons("jump", VIEWPORT_WIDTH - 185, 115);
+        gameButtons[0] = new GameButtons("attack", Constants.APP_WIDTH - 185, 25);
+        gameButtons[1] = new GameButtons("magic", Constants.APP_WIDTH - 100, 75);
+        gameButtons[2] = new GameButtons("jump", Constants.APP_WIDTH - 185, 115);
 
         addActor(gameButtons[0]);
         addActor(gameButtons[1]);
         addActor(gameButtons[2]);
     }
 
-    private void initMap() {
-        mapTown = new MapTown();
+    public void initKnight() {
+        knight = new Knight(Constants.APP_WIDTH / 2 - 90, Constants.APP_HEIGHT / 2 - 150, 90, 90);
+        knight.setCamera(camera);
+        knight.setMap(map);
+        knight.setDPad(dpad[0], dpad[1], dpad[2], dpad[3]);
+        addActor(knight);
     }
 
     public void updateMap() {
         camera.update();
 
-        mapTown.tmrTown.setView(camera);
-        mapTown.tmrTown.render();
+        map.tmrTown.setView(camera);
+        map.tmrTown.render();
     }
 }

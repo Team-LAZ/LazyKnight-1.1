@@ -1,10 +1,8 @@
 package com.laz.lazyknight.control;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class GameButtons extends Button {
 
@@ -24,12 +22,5 @@ public class GameButtons extends Button {
         bsGB = new ButtonStyle();
         bsGB.up = skGB.getDrawable(sID);
         setStyle(bsGB);
-
-        addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                System.out.println(getName());
-            }
-        });
     }
 }
