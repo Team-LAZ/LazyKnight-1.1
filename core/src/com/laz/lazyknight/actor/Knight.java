@@ -27,8 +27,8 @@ public class Knight extends Image {
         this.fHeight = fHeight;
         fStateTime = 0;
         fDir = 1; //default direction set to right, TODO read from file
-        fPosX = 0; //x position of camera, TODO read from file
-        fPosY = 0; //y position of camera
+        fPosX = 0; //x position of camera, TODO read from file and move to better place (camera class? / map class?)
+        fPosY = 0; //y position of camera, TODO read from file and move to better place (camera class? / map class?)
 
         taKnight = new TextureAtlas("knight.atlas");
 

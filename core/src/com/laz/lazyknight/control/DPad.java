@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+//TODO possibly move dpad and buttons into one class as most code is shared
 public class DPad extends Button {
 
     public static Image imgOutline;
@@ -13,7 +14,6 @@ public class DPad extends Button {
     ButtonStyle bsDPad;
 
     public DPad(String sID, float fX, float fY) {
-        setName(sID); //set id of each directional arrow
         setBounds(fX, fY, 75, 75); //x, y, width, height of directional arrows
 
         taDPad = new TextureAtlas("dpad.atlas");

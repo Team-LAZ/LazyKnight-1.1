@@ -11,7 +11,6 @@ public class GameButtons extends Button {
     ButtonStyle bsGB;
 
     public GameButtons(String sID, float fX, float fY) {
-        setName(sID); //set id of each button
         setBounds(fX, fY, 80, 80); //x, y, width, height of buttons
 
         taGB = new TextureAtlas("buttons.atlas");
